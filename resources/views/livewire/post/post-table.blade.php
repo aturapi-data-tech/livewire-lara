@@ -6,14 +6,14 @@
 
 
 
-                <div class="items-center  mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                <div class="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
                     <div class="mb-4 lg:mb-0">
                         <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Post</h3>
                         <span class="text-base font-normal text-gray-500 dark:text-gray-400">Tambahkan data post</span>
                     </div>
                 </div>
 
-                <div class="flex justify-right items-center ml-auto space-x-1 sm:space-x-3">
+                <div class="flex items-center ml-auto space-x-1 justify-right sm:space-x-3">
 
 
 
@@ -27,8 +27,7 @@
 
 
 
-                    <button wire:click="create()"
-                        class="inline-flex items-center justify-center w-1/3 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    <x-primary-button wire:click="create()" class="inline-flex">
                         <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -36,19 +35,18 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                         Add user
-                    </button>
+                    </x-primary-button>
 
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button
-                                class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                                type="button">
+                            <x-alternative-button class="inline-flex">
                                 <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path clip-rule="evenodd" fill-rule="evenodd"
                                         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                                 </svg>
                                 Show ({{ $limitPerPage }})
+                            </x-alternative-button>
                         </x-slot>
 
                         {{-- Open user menu content --}}
@@ -80,7 +78,8 @@
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <thead
+                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-4 py-3">Product name</th>
                                         <th scope="col" class="px-4 py-3">Category</th>
@@ -93,23 +92,27 @@
 
                                     @foreach ($posts as $post)
                                         <tr class="border-b dark:border-gray-700">
-                                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $post->id }}</th>
+                                            <th scope="row"
+                                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $post->id }}</th>
                                             <td class="px-4 py-3">{{ $post->title }}</td>
                                             <td class="px-4 py-3">{{ $post->body }}</td>
-                                            <td class="px-4 py-3 flex items-center justify-end">
+                                            <td class="flex items-center justify-end px-4 py-3">
                                                 <x-dropdown align="right" width="48">
                                                     <x-slot name="trigger">
                                                         <button
-                                                            class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                                            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                                             type="button">
-                                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                             </svg>
                                                     </x-slot>
-                            
+
                                                     {{-- Open user menu content --}}
                                                     <x-slot name="content">
-                            
+
                                                         <x-dropdown-link wire:click="edit({{ $post->id }})">
                                                             {{ __('Show') }}
                                                         </x-dropdown-link>
@@ -119,10 +122,10 @@
                                                         <x-dropdown-link wire:click="delete({{ $post->id }})">
                                                             {{ __('Delete') }}
                                                         </x-dropdown-link>
-                            
-                            
+
+
                                                     </x-slot>
-                            
+
                                                 </x-dropdown>
                                             </td>
                                         </tr>

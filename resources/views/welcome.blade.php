@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sirus (System Informasi Rumah Sakit dan E-Rekam Medis)</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
-    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
 
 </head>
 
@@ -17,7 +17,7 @@
 
     {{-- Navbar --}}
     <nav class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
             <a href="https://flowbite.com/" class="flex items-center">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SIRus</span>
@@ -35,7 +35,7 @@
             </button>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul
-                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 
 
                     @if (Route::has('login'))
@@ -70,11 +70,12 @@
 
     {{-- Hero --}}
     <section class="bg-white dark:bg-gray-900">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-            <div class="mr-auto place-self-center lg:col-span-7">
+        <div class="grid max-w-screen-xl px-4 py-3 mx-auto lg:gap-8 lg:py-4 lg:grid-cols-2 xl:gap-0">
+            <div class="mr-auto place-self-center lg:col-span-1">
                 <h1
-                    class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
-                    Selamat Datang</h1>
+                    class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+                    Selamat Datang
+                </h1>
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     SIRus (Sistem Informasi Rumah Sakit dan E-Rekam Medis)
                     <br>
@@ -89,29 +90,35 @@
                 </a>
             </div>
 
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex ">
+            <div class="lg:mt-0 lg:col-span-1 lg:flex ">
                 {{-- @include('welcomeimage') --}}
-                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_Zus25A5BNo.json" background="transparent"  speed="1"  style="width: 500px; height: 400px;" loop autoplay></lottie-player>
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_Zus25A5BNo.json"
+                    background="transparent" speed="1" style="width: 500px; height: 400px;" loop autoplay>
+                </lottie-player>
             </div>
+
         </div>
     </section>
 
 
-<footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
-    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-    
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
-    </div>
-</footer>
+    <footer class="">
+        <div class="w-full max-w-screen-xl p-8 mx-auto md:py-3">
+
+            <hr class="my-4 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-3" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
+                    href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
 
 
+            <x-primary-button>Simpan</x-primary-button>
+            <x-alternative-button>Alternative</x-alternative-button>
+            <x-red-button>Hapus</x-red-button>
+            <x-yellow-button>Edit</x-yellow-button>
+            <x-light-button>Keluar</x-light-button>
+        </div>
+
+    </footer>
 
 
-
-
-
-   
 
 
 
