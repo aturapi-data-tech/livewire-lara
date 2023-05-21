@@ -16,7 +16,7 @@
                             d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <svg id="toggleSidebarMobileClose" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"
+                    <svg id="toggleSidebarMobileClose" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -26,8 +26,8 @@
 
 
                 <a href="{{ route('dashboard') }}" class="flex ml-2 md:mr-24">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    <span class="pl-2 self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                    <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
+                    <span class="self-center pl-2 text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                         SIRus
                     </span>
                 </a>
@@ -75,23 +75,34 @@
                     </svg>
                 </button>
 
-                {{-- Button Dark/Light Mode --}}
+                {{-- Tooltip Button Dark/Light Mode --}}
                 <div id="tooltip-toggle" role="tooltip"
-                    class="absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm tooltip opacity-0 invisible"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip"
                     style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(963px, 63px);"
                     data-popper-placement="bottom">
                     Toggle dark mode
                     <div class="tooltip-arrow" data-popper-arrow=""
                         style="position: absolute; left: 0px; transform: translate(69px);"></div>
                 </div>
-                {{-- End Button Dark/Light Mode --}}
+                {{-- End Tooltip Button Dark/Light Mode --}}
+
+                {{-- Tooltip Button Profile Mode --}}
+                <div id="tooltip-profile" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip"
+                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(963px, 63px);"
+                    data-popper-placement="bottom">
+                    Profile Button
+                    <div class="tooltip-arrow" data-popper-arrow=""
+                        style="position: absolute; left: 0px; transform: translate(69px);"></div>
+                </div>
+                {{-- End Tooltip Button Profile Mode --}}
 
 
                 {{-- Open user menu --}}
                 <div class="flex items-center ml-3">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button type="button"
+                            <button data-tooltip-target="tooltip-profile" type="button"
                                 class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="w-8 h-8 rounded-full"
@@ -140,9 +151,3 @@
 
 
 </nav>
-
-
-
-
-
-

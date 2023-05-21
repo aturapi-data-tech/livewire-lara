@@ -35,7 +35,13 @@ class PostTable extends Component
     {
 
         return view('livewire.post.post-table',
-    ['posts'=> Post::where('title', 'like', '%'.$this->search.'%')->paginate($this->limitPerPage)]);
+    [
+    'posts'=> Post::where('title', 'like', '%'.$this->search.'%')->paginate($this->limitPerPage),
+    'myTitle'=>'Master Post',
+    'mySnipt'=>'Tambah Data Master Post',
+    'myProgram'=>'Post',
+    'myLimitPerPages'=>[5,10,15,20,100]
+    ]);
 
     }
 
