@@ -106,17 +106,20 @@
 
 
                                     @foreach ($posts as $post)
-                                        <tr class="border-b dark:border-gray-700">
+                                        <tr class="border-b group dark:border-gray-700">
                                             <th scope="row"
-                                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                class="px-4 py-3 font-medium text-gray-900 group-hover:bg-gray-100 group-hover:text-blue-700 whitespace-nowrap dark:text-white">
                                                 {{ $post->id }}</th>
-                                            <td class="px-4 py-3">{{ $post->title }}</td>
-                                            <td class="px-4 py-3">{{ $post->body }}</td>
-                                            <td class="flex items-center justify-center px-4 py-3">
+                                            <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
+                                                {{ $post->title }}</td>
+                                            <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
+                                                {{ $post->body }}</td>
+                                            <td
+                                                class="flex items-center justify-center px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
                                                 <x-dropdown align="right" width="48">
                                                     <x-slot name="trigger">
                                                         <button
-                                                            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                                            class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                                                             type="button">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
