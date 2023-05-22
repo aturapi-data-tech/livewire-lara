@@ -157,7 +157,8 @@
             </div>
             <!-- Card Footer -->
             <div class="flex items-center justify-end pt-3 sm:pt-6">
-                {{ $posts->links() }}
+                {{-- {{ $posts->links() }} --}}
+                {{ $posts->links('vendor.livewire.tailwind') }}
             </div>
 
 

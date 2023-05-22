@@ -25,11 +25,21 @@ class PostTable extends Component
 
 
 
+
+
+    public function  updatedsearch(): void
+    {
+        $this->resetPage();
+
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+     
 
     public function render()
     {
@@ -206,4 +216,12 @@ class PostTable extends Component
 
     }
 
+    
+
+// Blm dipake
+    public function paginationView()
+
+    {
+        return 'vendor.livewire.tailwind';
+    }
 }
