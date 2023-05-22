@@ -11,6 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>
@@ -85,9 +87,17 @@
                 </p>
 
                 <a href="#"
-                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                    class="flex inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     Speak to Sales
                 </a>
+                {{-- button --}}
+                <div class="pt-2">
+                    <x-primary-button>Simpan</x-primary-button>
+                    <x-alternative-button>Alternative</x-alternative-button>
+                    <x-red-button>Hapus</x-red-button>
+                    <x-yellow-button>Edit</x-yellow-button>
+                    <x-light-button>Keluar</x-light-button>
+                </div>
             </div>
 
             <div class="lg:mt-0 lg:col-span-1 lg:flex ">
@@ -109,11 +119,6 @@
                     href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
 
 
-            <x-primary-button>Simpan</x-primary-button>
-            <x-alternative-button>Alternative</x-alternative-button>
-            <x-red-button>Hapus</x-red-button>
-            <x-yellow-button>Edit</x-yellow-button>
-            <x-light-button>Keluar</x-light-button>
         </div>
 
     </footer>
