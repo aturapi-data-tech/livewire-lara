@@ -150,7 +150,13 @@
                                     @endforeach
 
                                 </tbody>
+
                             </table>
+                            @if ($posts->count() == 0)
+                                <div class="w-full p-4 text-sm text-center text-gray-500 dark:text-gray-400">
+                                    {{ 'Data ' . $myProgram . ' Tidak ditemukan' }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

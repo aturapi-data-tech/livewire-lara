@@ -19,7 +19,14 @@ class PostTable extends Component
 
     public $search;
 
-    // protected $queryString = ['search'];
+    // $queryString property di gunakan untuk men update url ketika mencari data dan exept '' digunakan ketika data kosong dan url kembali kosong
+    protected $queryString = [
+
+        // 'search' => ['except' => ''],
+        'search' => ['except' => '', 'as' => 'cariData'],
+        'page' => ['except' => 1, 'as' => 'p']
+    ];
+    // $queryString property di gunakan untuk men update url ketika mencari data dan exept '' digunakan ketika data kosong dan url kembali kosongI
 
     public $limitPerPage = 5;
 
@@ -27,7 +34,7 @@ class PostTable extends Component
 
 
 
-    public function  updatedsearch(): void
+    public function updatedsearch(): void
     {
         $this->resetPage();
 
@@ -39,27 +46,29 @@ class PostTable extends Component
      * @var array
      */
 
-     
+
 
     public function render()
     {
 
-        return view('livewire.post.post-table',
-    [
-    'posts'=> Post::where('title', 'like', '%'.$this->search.'%')->paginate($this->limitPerPage),
-    'myTitle'=>'Master Post',
-    'mySnipt'=>'Tambah Data Master Post',
-    'myProgram'=>'Post',
-    'myLimitPerPages'=>[5,10,15,20,100]
-    ]);
+        return view(
+            'livewire.post.post-table',
+            [
+                'posts' => Post::where('title', 'like', '%' . $this->search . '%')->paginate($this->limitPerPage),
+                'myTitle' => 'Master Post',
+                'mySnipt' => 'Tambah Data Master Post',
+                'myProgram' => 'Post',
+                'myLimitPerPages' => [5, 10, 15, 20, 100]
+            ]
+        );
 
     }
 
 
-    public function changeLimitPerPage($Change)
+    public function changeLimitPerPage($value)
     {
 
-    $this->limitPerPage=$Change;
+        $this->limitPerPage = $value;
 
     }
 
@@ -216,11 +225,10 @@ class PostTable extends Component
 
     }
 
-    
 
-// Blm dipake
+
+    // Blm dipake
     public function paginationView()
-
     {
         return 'vendor.livewire.tailwind';
     }
