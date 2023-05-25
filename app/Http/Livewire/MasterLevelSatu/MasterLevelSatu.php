@@ -3,23 +3,24 @@
 namespace App\Http\Livewire\MasterLevelSatu;
 
 use Livewire\Component;
-use App\Models\Post;
+use App\Models\Province;
 use Livewire\WithPagination;
 
 class MasterLevelSatu extends Component
 {
     use WithPagination;
 
-    public $title, $body, $post_id;
+    public $name, $province_id;
 
     public $isOpen = 0;
+    public $tampilIsOpen = 0;
 
     public $search;
 
     // $queryString property di gunakan untuk men update url ketika mencari data dan exept '' digunakan ketika data kosong dan url kembali kosong
     protected $queryString = [
-
         // 'search' => ['except' => ''],
+
         'search' => ['except' => '', 'as' => 'cariData'],
         'page' => ['except' => 1, 'as' => 'p']
     ];
@@ -37,13 +38,20 @@ class MasterLevelSatu extends Component
         return view(
             'livewire.master-level-satu.master-level-satu',
             [
-                'posts' => Post::where('title', 'like', '%' . $this->search . '%')->paginate($this->limitPerPage),
-                'myTitle' => 'Master Post',
-                'mySnipt' => 'Tambah Data Master Post',
-                'myProgram' => 'Post',
+                'provinces' => Province::where('name', 'like', '%' . $this->search . '%')->paginate($this->limitPerPage),
+                'myTitle' => 'Master Provinsi',
+                'mySnipt' => 'Tambah Data Master Provinsi',
+                'myProgram' => 'Provinsi',
                 'myLimitPerPages' => [5, 10, 15, 20, 100]
             ]
         );
+    }
+
+    public function changeLimitPerPage($value)
+    {
+
+        $this->limitPerPage = $value;
+
     }
 
 
@@ -71,6 +79,13 @@ class MasterLevelSatu extends Component
 
     }
 
+    public function openModalTampil()
+    {
+
+        $this->tampilIsOpen = true;
+
+    }
+
 
 
     /**
@@ -86,6 +101,13 @@ class MasterLevelSatu extends Component
 
     }
 
+    public function closeModalTampil()
+    {
+
+        $this->tampilIsOpen = false;
+
+    }
+
 
 
     /**
@@ -97,11 +119,9 @@ class MasterLevelSatu extends Component
     private function resetInputFields()
     {
 
-        $this->title = '';
+        $this->name = '';
 
-        $this->body = '';
-
-        $this->post_id = '';
+        $this->province_id = '';
 
     }
 
@@ -118,19 +138,15 @@ class MasterLevelSatu extends Component
 
         $this->validate([
 
-            'title' => 'required',
-
-            'body' => 'required',
+            'name' => 'required',
 
         ]);
 
 
 
-        Post::updateOrCreate(['id' => $this->post_id], [
+        province::updateOrCreate(['id' => $this->province_id], [
 
-            'title' => $this->title,
-
-            'body' => $this->body
+            'name' => $this->name,
 
         ]);
 
@@ -139,7 +155,7 @@ class MasterLevelSatu extends Component
         session()->flash(
             'message',
 
-            $this->post_id ? 'Post Updated Successfully.' : 'Post Created Successfully.'
+            $this->province_id ? 'province Updated Successfully.' : 'province Created Successfully.'
         );
 
 
@@ -161,17 +177,28 @@ class MasterLevelSatu extends Component
     public function edit($id)
     {
 
-        $post = Post::findOrFail($id);
+        $province = province::findOrFail($id);
 
-        $this->post_id = $id;
+        $this->province_id = $id;
 
-        $this->title = $post->title;
-
-        $this->body = $post->body;
-
+        $this->name = $province->name;
 
 
         $this->openModal();
+
+    }
+
+    public function tampil($id)
+    {
+
+        $province = province::findOrFail($id);
+
+        $this->province_id = $id;
+
+        $this->name = $province->name;
+
+
+        $this->openModalTampil();
 
     }
 
@@ -186,9 +213,9 @@ class MasterLevelSatu extends Component
     public function delete($id)
     {
 
-        Post::find($id)->delete();
+        province::find($id)->delete();
 
-        session()->flash('message', 'Post Deleted Successfully.');
+        session()->flash('message', 'province Deleted Successfully.');
 
     }
 

@@ -21,7 +21,7 @@
                 </h3>
 
                 {{-- Close Modal --}}
-                <button wire:click="closeModal()"
+                <button wire:click="closeModalTampil()"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -40,7 +40,7 @@
                     <div>
                         <x-input-label for="province_id" :value="__('Kode Provinsi')" />
                         <x-text-input class="block w-full mt-1" :value="old('name')" required autofocus
-                            autocomplete="province_id" wire:model="province_id" />
+                            autocomplete="province_id" wire:model="province_id" disabled />
 
                         @error('province_id')
                             <span class="text-red-500">{{ $message }}</span>
@@ -49,7 +49,7 @@
                     <div>
                         <x-input-label for="name" :value="__('Nama Provinsi')" />
                         <x-text-input class="block w-full mt-1" :value="old('name')" required autofocus autocomplete="name"
-                            wire:model="name" />
+                            wire:model="name" disabled />
 
                         @error('name')
                             <span class="text-red-500">{{ $message }}</span>
@@ -61,8 +61,7 @@
 
 
                 <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <x-green-button wire:click.prevent="store()" type="button">Simpan</x-green-button>
-                    <x-light-button wire:click="closeModal()" type="button">Keluar</x-light-button>
+                    <x-light-button wire:click="closeModalTampil()" type="button">Keluar</x-light-button>
                 </div>
 
 

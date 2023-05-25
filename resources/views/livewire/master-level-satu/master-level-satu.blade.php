@@ -86,6 +86,9 @@
                     @if ($isOpen)
                         @include('livewire.master-level-satu.create')
                     @endif
+                    @if ($tampilIsOpen)
+                        @include('livewire.master-level-satu.tampil')
+                    @endif
 
                 </div>
 
@@ -100,57 +103,70 @@
                                     <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
-                                            <th scope="col" class="px-4 py-3">Id</th>
-                                            <th scope="col" class="px-4 py-3">Title</th>
-                                            <th scope="col" class="px-4 py-3">Body</th>
-                                            <th scope="col" class="w-8 px-4 py-3 text-center">Alat
+                                            <th scope="col" class="w-2/12 px-4 py-3">Kode Provinsi</th>
+                                            <th scope="col" class="px-4 py-3">Nama Provinsi</th>
+
+                                            <th scope="col" class="w-8 px-4 py-3 text-center">Action
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white dark:bg-gray-800">
 
 
-                                        @foreach ($posts as $post)
+                                        @foreach ($provinces as $province)
                                             <tr class="border-b group dark:border-gray-700">
                                                 <th scope="row"
                                                     class="px-4 py-3 font-medium text-gray-900 group-hover:bg-gray-100 group-hover:text-blue-700 whitespace-nowrap dark:text-white">
-                                                    {{ $post->id }}</th>
+                                                    {{ $province->id }}</th>
                                                 <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
-                                                    {{ $post->title }}</td>
-                                                <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
-                                                    {{ $post->body }}</td>
+                                                    {{ $province->name }}</td>
+
                                                 <td
                                                     class="flex items-center justify-center px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
-                                                    <x-dropdown align="right" width="48">
-                                                        <x-slot name="trigger">
-                                                            <button
-                                                                class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                                                                type="button">
-                                                                <svg class="w-5 h-5" aria-hidden="true"
-                                                                    fill="currentColor" viewbox="0 0 20 20"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                                </svg>
-                                                        </x-slot>
 
-                                                        {{-- Open user menu content --}}
-                                                        <x-slot name="content">
+                                                    <div>
+                                                        <!-- Dropdown Action menu -->
+                                                        <x-light-button id="dropdownDefaultButton"
+                                                            data-dropdown-toggle="dropdown{{ $province->id }}"
+                                                            data-dropdown-trigger="click"
+                                                            data-dropdown-placement="left">
+                                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                            </svg>
+                                                        </x-light-button>
+                                                        <!-- Dropdown Action Open menu -->
+                                                        <div id="dropdown{{ $province->id }}"
+                                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                                aria-labelledby="dropdownHoverButton">
+                                                                <li>
+                                                                    <x-dropdown-link
+                                                                        wire:click="tampil({{ $province->id }})">
+                                                                        {{ __('Tampil | ' . $province->name) }}
+                                                                    </x-dropdown-link>
+                                                                </li>
+                                                                <li>
+                                                                    <x-dropdown-link
+                                                                        wire:click="edit({{ $province->id }})">
+                                                                        {{ __('Ubah') }}
+                                                                    </x-dropdown-link>
+                                                                </li>
+                                                                <li>
+                                                                    <x-dropdown-link
+                                                                        wire:click="delete({{ $province->id }})">
+                                                                        {{ __('Hapus') }}
+                                                                    </x-dropdown-link>
+                                                                </li>
 
-                                                            <x-dropdown-link wire:click="edit({{ $post->id }})">
-                                                                {{ __('Tampil | ' . $post->title) }}
-                                                            </x-dropdown-link>
-                                                            <x-dropdown-link wire:click="edit({{ $post->id }})">
-                                                                {{ __('Ubah') }}
-                                                            </x-dropdown-link>
-                                                            <x-dropdown-link wire:click="delete({{ $post->id }})">
-                                                                {{ __('Hapus') }}
-                                                            </x-dropdown-link>
+                                                            </ul>
+                                                        </div>
+                                                        <!-- End Dropdown Action Open menu -->
 
+                                                    </div>
+                                                    <!-- End Dropdown Action menu -->
 
-                                                        </x-slot>
-
-                                                    </x-dropdown>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -158,7 +174,7 @@
                                     </tbody>
 
                                 </table>
-                                @if ($posts->count() == 0)
+                                @if ($provinces->count() == 0)
                                     <div class="w-full p-4 text-sm text-center text-gray-500 dark:text-gray-400">
                                         {{ 'Data ' . $myProgram . ' Tidak ditemukan' }}
                                     </div>
@@ -169,8 +185,8 @@
                 </div>
                 <!-- Card Footer -->
                 <div class="flex items-center justify-end pt-3 sm:pt-6">
-                    {{-- {{ $posts->links() }} --}}
-                    {{ $posts->links('vendor.livewire.tailwind') }}
+                    {{-- {{ $provinces->links() }} --}}
+                    {{ $provinces->links('vendor.livewire.tailwind') }}
                 </div>
 
 
