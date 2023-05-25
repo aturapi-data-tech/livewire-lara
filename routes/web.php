@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Post\PostTable;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Livewire\MasterLevelSatu\MasterLevelSatu;
+
 
 
 /*
@@ -36,7 +38,7 @@ Route::middleware('auth')->group(function () {
 //     ->only(['index', 'store'])
 //     ->middleware(['auth', 'verified']);
 Route::get('posts', PostTable::class)->middleware('auth')->name('posts');
+Route::get('masterlevelsatu', MasterLevelSatu::class)->middleware('auth')->name('MasterLevelSatu');
 
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

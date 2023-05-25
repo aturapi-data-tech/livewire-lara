@@ -28,7 +28,7 @@
                             </svg>
                         </div>
                         <x-text-input id="simpleSearch" name="namesimpleSearch" type="text" class="p-2 pl-10"
-                            autofocus autocomplete="simpleSearch" placeholder="Cari Data" wire:model="search" />
+                            autofocus autocomplete="simpleSearch" placeholder="Cari Data" wire:model.lazy="search" />
                     </div>
                     {{-- end search --}}
 
