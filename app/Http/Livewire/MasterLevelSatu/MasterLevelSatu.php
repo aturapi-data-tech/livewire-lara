@@ -10,42 +10,109 @@ class MasterLevelSatu extends Component
 {
     use WithPagination;
 
-    public $name, $province_id;
+    public $name;
+    public $province_id;
+
+
+
+
 
     public $isOpen = 0;
     public $tampilIsOpen = 0;
 
+
+
+
     public $search;
-
-    // $queryString property di gunakan untuk men update url ketika mencari data dan exept '' digunakan ketika data kosong dan url kembali kosong
     protected $queryString = [
-        // 'search' => ['except' => ''],
-
         'search' => ['except' => '', 'as' => 'cariData'],
-        'page' => ['except' => 1, 'as' => 'p']
+        'page' => ['except' => 1, 'as' => 'p'],
     ];
-    // $queryString property di gunakan untuk men update url ketika mencari data dan exept '' digunakan ketika data kosong dan url kembali kosongI
+
+
+
+
+
+
+
+
+
+    public $sortField = 'id';
+    public $sortAsc = true;
+
+
+
+
+
+
+    protected $listeners = [
+        'confirm_remove_record_province' => 'delete',
+    ];
+
+
+
 
     public $limitPerPage = 5;
+
+
+
+
+
+
+
+
+
 
     public function updatedsearch(): void
     {
         $this->resetPage();
 
     }
-    public function render()
-    {
-        return view(
-            'livewire.master-level-satu.master-level-satu',
-            [
-                'provinces' => Province::where('name', 'like', '%' . $this->search . '%')->paginate($this->limitPerPage),
-                'myTitle' => 'Master Provinsi',
-                'mySnipt' => 'Tambah Data Master Provinsi',
-                'myProgram' => 'Provinsi',
-                'myLimitPerPages' => [5, 10, 15, 20, 100]
-            ]
-        );
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function changeLimitPerPage($value)
     {
@@ -55,14 +122,57 @@ class MasterLevelSatu extends Component
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function create()
     {
+        // $this->emit('toastr-info', "openModal...");
 
         $this->resetInputFields();
 
         $this->openModal();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -79,6 +189,20 @@ class MasterLevelSatu extends Component
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function openModalTampil()
     {
 
@@ -94,12 +218,44 @@ class MasterLevelSatu extends Component
      * @var array
      */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function closeModal()
     {
 
         $this->isOpen = false;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function closeModalTampil()
     {
@@ -115,6 +271,28 @@ class MasterLevelSatu extends Component
      *
      * @var array
      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private function resetInputFields()
     {
@@ -132,6 +310,30 @@ class MasterLevelSatu extends Component
      *
      * @var array
      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function store()
     {
@@ -168,6 +370,29 @@ class MasterLevelSatu extends Component
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -188,6 +413,39 @@ class MasterLevelSatu extends Component
 
     }
 
+
+
+
+
+
+
+
+
+
+
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortAsc = !$this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
+
+        $this->sortField = $field;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function tampil($id)
     {
 
@@ -197,10 +455,32 @@ class MasterLevelSatu extends Component
 
         $this->name = $province->name;
 
-
         $this->openModalTampil();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -210,14 +490,61 @@ class MasterLevelSatu extends Component
      * @var array
      */
 
-    public function delete($id)
+    public function delete($id, $name)
     {
 
         province::find($id)->delete();
 
-        session()->flash('message', 'province Deleted Successfully.');
+        $this->emit('toastr-info', "Hapus data " . $name . " berhasil.");
+
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function render()
+    {
+        return view(
+            'livewire.master-level-satu.master-level-satu',
+            [
+                'provinces' => Province::where('name', 'like', '%' . $this->search . '%')
+                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->paginate($this->limitPerPage),
+                'myTitle' => 'Master Provinsi',
+                'mySnipt' => 'Tambah Data Master Provinsi',
+                'myProgram' => 'Provinsi',
+                'myLimitPerPages' => [5, 10, 15, 20, 100]
+            ]
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -226,4 +553,9 @@ class MasterLevelSatu extends Component
     {
         return 'vendor.livewire.tailwind';
     }
+
+
+
+
+
 }

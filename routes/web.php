@@ -41,4 +41,10 @@ Route::get('posts', PostTable::class)->middleware('auth')->name('posts');
 Route::get('masterlevelsatu', MasterLevelSatu::class)->middleware('auth')->name('MasterLevelSatu');
 
 
+// Life Cycle Hook
+Route::get('/list', function () {
+    return view('base', []);
+});
+
+
 require __DIR__ . '/auth.php';
