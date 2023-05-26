@@ -139,15 +139,18 @@
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" class="w-2/12 px-4 py-3">
-                                                <a wire:click.prevent="sortBy('id')" role="button" href="#">
+                                                <x-sort-link wire:click.prevent="sortBy('id')" role="button"
+                                                    href="#">
                                                     Kode Provinsi
-                                                </a>
+                                                </x-sort-link>
                                             </th>
-                                            <th scope="col" class="px-4 py-3"><a wire:click.prevent="sortBy('id')"
-                                                    role="button" href="#">
+                                            <th scope="col" class="px-4 py-3">
+                                                <x-sort-link wire:click.prevent="sortBy('name')" role="button"
+                                                    href="#">
                                                     Nama Provinsi
-                                                </a>
+                                                </x-sort-link>
                                             </th>
+
 
                                             <th scope="col" class="w-8 px-4 py-3 text-center">Action
                                             </th>
