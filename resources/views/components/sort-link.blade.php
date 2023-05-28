@@ -1,7 +1,7 @@
-@props(['active'])
+@props(['active' => false])
 
 @php
-    $classes = $active ?? false ? 'inline-flex' : 'inline-flex';
+    $classes = $active ?? false ? 'inline-flex text-blue-700' : 'inline-flex';
     
 @endphp
 

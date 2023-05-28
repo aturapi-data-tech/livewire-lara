@@ -139,16 +139,31 @@
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" class="w-2/12 px-4 py-3">
-                                                <x-sort-link wire:click.prevent="sortBy('id')" role="button"
-                                                    href="#">
-                                                    Kode Provinsi
-                                                </x-sort-link>
+                                                @if ($sortField == 'id')
+                                                    <x-sort-link :active=true wire:click.prevent="sortBy('id')"
+                                                        role="button" href="#">
+                                                        Kode Provinsi
+                                                    </x-sort-link>
+                                                @else
+                                                    <x-sort-link :active=false wire:click.prevent="sortBy('id')"
+                                                        role="button" href="#">
+                                                        Kode Provinsi
+                                                    </x-sort-link>
+                                                @endif
                                             </th>
                                             <th scope="col" class="px-4 py-3">
-                                                <x-sort-link wire:click.prevent="sortBy('name')" role="button"
-                                                    href="#">
-                                                    Nama Provinsi
-                                                </x-sort-link>
+
+                                                @if ($sortField == 'name')
+                                                    <x-sort-link :active=true wire:click.prevent="sortBy('name')"
+                                                        role="button" href="#">
+                                                        Nama Provinsi
+                                                    </x-sort-link>
+                                                @else
+                                                    <x-sort-link :active=false wire:click.prevent="sortBy('name')"
+                                                        role="button" href="#">
+                                                        Nama Provinsi
+                                                    </x-sort-link>
+                                                @endif
                                             </th>
 
 
@@ -160,7 +175,8 @@
 
 
                                         @foreach ($provinces as $province)
-                                            <tr class="border-b group dark:border-gray-700">
+                                            <tr class="border-b group dark:border-gray-700"
+                                                wire:click="tampil('{{ $province->id }}')">
                                                 <th scope="row"
                                                     class="px-4 py-3 font-medium text-gray-900 group-hover:bg-gray-100 group-hover:text-blue-700 whitespace-nowrap dark:text-white">
                                                     {{ $province->id }}</th>
@@ -196,7 +212,7 @@
 
                                                         <!-- Dropdown Action Open menu -->
                                                         <div id="dropdownMenu{{ $province->id }}"
-                                                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                            class="z-10 hidden w-auto bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                                                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                                                 aria-labelledby="dropdownButton{{ $province->id }}">
                                                                 <li>
@@ -306,11 +322,6 @@
                                     </div>
                                 @endif
                                 {{-- no data found end --}}
-
-
-
-
-
                             </div>
                         </div>
                     </div>
@@ -440,15 +451,16 @@
                     offsetSkidding: 0,
                     offsetDistance: 10,
                     delay: 300,
-                    // onHide: () => {
-                    //     console.log('dropdown has been hidden');
-                    // },
-                    // onShow: () => {
-                    //     console.log('dropdown has been shown');
-                    // },
-                    // onToggle: () => {
-                    //     console.log('dropdown has been toggled');
-                    // }
+                    onHide: () => {
+                        console.log('dropdown has been hidden');
+
+                    },
+                    onShow: () => {
+                        console.log('dropdown has been shown');
+                    },
+                    onToggle: () => {
+                        console.log('dropdown has been toggled');
+                    }
                 };
 
                 /*
@@ -457,8 +469,8 @@
                  * options: optional
                  */
                 const dropdown = new Dropdown($targetEl, $triggerEl, options);
-                dropdown.toggle();
 
+                dropdown.show();
 
 
 
