@@ -69,8 +69,8 @@
                                 <x-nav-link class="pl-11" :href="route('MasterLevelSatu')" :active="request()->routeIs('MasterLevelSatu')">
                                     {{ __('Master Level Satu') }}
                                 </x-nav-link>
-                                <x-nav-link class="pl-11" :href="route('posts')" :active="request()->routeIs('posts')">
-                                    {{ __('Post') }}
+                                <x-nav-link class="pl-11" :href="route('MasterLevelDua')" :active="request()->routeIs('MasterLevelDua')">
+                                    {{ __('Master Level Dua') }}
                                 </x-nav-link>
                             </li>
                         </ul>

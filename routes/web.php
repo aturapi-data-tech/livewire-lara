@@ -5,6 +5,7 @@ use App\Http\Livewire\Post\PostTable;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\MasterLevelSatu\MasterLevelSatu;
+use App\Http\Livewire\MasterLevelDua\MasterLevelDua;
 
 
 
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
 //     ->middleware(['auth', 'verified']);
 Route::get('posts', PostTable::class)->middleware('auth')->name('posts');
 Route::get('masterlevelsatu', MasterLevelSatu::class)->middleware('auth')->name('MasterLevelSatu');
+Route::get('masterleveldua', MasterLevelDua::class)->middleware('auth')->name('MasterLevelDua');
 
 
 // Life Cycle Hook

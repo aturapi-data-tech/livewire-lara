@@ -529,7 +529,7 @@ class MasterLevelSatu extends Component
                 'myTitle' => 'Master Provinsi',
                 'mySnipt' => 'Tambah Data Master Provinsi',
                 'myProgram' => 'Provinsi',
-                'myLimitPerPages' => [5, 10, 15, 20, 100]
+                'myLimitPerPages' => [5, 10, 15, 20, 100, 111]
             ]
         );
     }

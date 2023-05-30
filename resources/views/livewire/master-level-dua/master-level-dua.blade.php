@@ -1,11 +1,5 @@
 <div>
 
-
-
-
-
-
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <div class="px-4 pt-6">
         <div
             class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
@@ -17,9 +11,6 @@
                 <div class="">
 
 
-
-
-
                     {{-- text --}}
                     <div class="mb-5">
                         <h3 class="text-3xl font-bold text-gray-900 dark:text-white">{{ $myTitle }}</h3>
@@ -29,12 +20,7 @@
 
 
 
-
-
-
                     <div class="md:flex md:justify-between">
-
-
 
 
 
@@ -57,9 +43,6 @@
 
 
 
-
-
-
                         {{-- two button --}}
                         <div class="flex justify-between mt-2 md:mt-0">
                             <x-primary-button wire:click="create()" class="flex justify-center flex-auto">
@@ -71,10 +54,6 @@
                                 </svg>
                                 Tambah Data {{ $myProgram }}
                             </x-primary-button>
-
-
-
-
 
 
 
@@ -94,7 +73,7 @@
                                 <x-slot name="content">
 
                                     @foreach ($myLimitPerPages as $myLimitPerPage)
-                                        <x-dropdown-link wire:click="changeLimitPerPage({{ $myLimitPerPage }})">
+                                        <x-dropdown-link wire:click="setLimitPerPage({{ $myLimitPerPage }})">
                                             {{ __($myLimitPerPage) }}
                                         </x-dropdown-link>
                                     @endforeach
@@ -109,23 +88,16 @@
 
 
 
-
                     @if ($isOpen)
-                        @include('livewire.master-level-satu.create')
+                        @include('livewire.master-level-dua.create')
                     @endif
                     @if ($tampilIsOpen)
-                        @include('livewire.master-level-satu.tampil')
+                        @include('livewire.master-level-dua.tampil')
                     @endif
-
-
-
 
 
 
                 </div>
-
-
-
 
 
 
@@ -139,32 +111,53 @@
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
                                             <th scope="col" class="w-2/12 px-4 py-3">
-                                                @if ($sortField == 'id')
-                                                    <x-sort-link :active=true wire:click.prevent="sortBy('id')"
-                                                        role="button" href="#">
+                                                @if ($sortField == 'regencies.id')
+                                                    <x-sort-link :active=true
+                                                        wire:click.prevent="sortBy('regencies.id')" role="button"
+                                                        href="#">
                                                         Kode Provinsi
                                                     </x-sort-link>
                                                 @else
-                                                    <x-sort-link :active=false wire:click.prevent="sortBy('id')"
-                                                        role="button" href="#">
+                                                    <x-sort-link :active=false
+                                                        wire:click.prevent="sortBy('regencies.id')" role="button"
+                                                        href="#">
                                                         Kode Provinsi
                                                     </x-sort-link>
                                                 @endif
                                             </th>
                                             <th scope="col" class="px-4 py-3">
 
-                                                @if ($sortField == 'name')
-                                                    <x-sort-link :active=true wire:click.prevent="sortBy('name')"
-                                                        role="button" href="#">
+                                                @if ($sortField == 'regencies.name')
+                                                    <x-sort-link :active=true
+                                                        wire:click.prevent="sortBy('regencies.name')" role="button"
+                                                        href="#">
+                                                        Nama Kota
+                                                    </x-sort-link>
+                                                @else
+                                                    <x-sort-link :active=false
+                                                        wire:click.prevent="sortBy('regencies.name')" role="button"
+                                                        href="#">
+                                                        Nama Kota
+                                                    </x-sort-link>
+                                                @endif
+                                            </th>
+                                            <th scope="col" class="px-4 py-3">
+
+                                                @if ($sortField == 'provinces.name')
+                                                    <x-sort-link :active=true
+                                                        wire:click.prevent="sortBy('provinces.name')" role="button"
+                                                        href="#">
                                                         Nama Provinsi
                                                     </x-sort-link>
                                                 @else
-                                                    <x-sort-link :active=false wire:click.prevent="sortBy('name')"
-                                                        role="button" href="#">
+                                                    <x-sort-link :active=false
+                                                        wire:click.prevent="sortBy('provinces.name')" role="button"
+                                                        href="#">
                                                         Nama Provinsi
                                                     </x-sort-link>
                                                 @endif
                                             </th>
+
 
 
                                             <th scope="col" class="w-8 px-4 py-3 text-center">Action
@@ -174,61 +167,54 @@
                                     <tbody class="bg-white dark:bg-gray-800">
 
 
-                                        @foreach ($provinces as $province)
+                                        @foreach ($regencys as $regency)
                                             <tr class="border-b group dark:border-gray-700">
                                                 <th scope="row"
                                                     class="px-4 py-3 font-medium text-gray-900 group-hover:bg-gray-100 group-hover:text-blue-700 whitespace-nowrap dark:text-white">
-                                                    {{ $province->id }}</th>
+                                                    {{ $regency->id }}</th>
                                                 <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
-                                                    {{ $province->name }}</td>
+                                                    {{ $regency->name }}</td>
+                                                <td class="px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
+                                                    {{ $regency->province_name }}</td>
 
                                                 <td
                                                     class="flex items-center justify-center px-4 py-3 group-hover:bg-gray-100 group-hover:text-blue-700">
 
 
 
-
-
-
-
-
-
-
-
-
-
                                                     <!-- Dropdown Action menu Flowbite-->
                                                     <div>
-                                                        <x-light-button id="dropdownButton{{ $province->id }}"
+                                                        <x-light-button id="dropdownButton{{ $regency->id }}"
                                                             class="inline-flex"
-                                                            wire:click="$emit('pressDropdownButton','{{ $province->id }}')">
-                                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            wire:click="$emit('pressDropdownButton','{{ $regency->id }}')">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                fill="currentColor" viewbox="0 0 20 20"
+                                                                xmlns="http://www.w3.org/2000/svg">
                                                                 <path
                                                                     d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                                             </svg>
                                                         </x-light-button>
 
                                                         <!-- Dropdown Action Open menu -->
-                                                        <div id="dropdownMenu{{ $province->id }}"
+                                                        <div id="dropdownMenu{{ $regency->id }}"
                                                             class="z-10 hidden w-auto bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                                                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                                aria-labelledby="dropdownButton{{ $province->id }}">
+                                                                aria-labelledby="dropdownButton{{ $regency->id }}">
                                                                 <li>
                                                                     <x-dropdown-link
-                                                                        wire:click="tampil('{{ $province->id }}')">
-                                                                        {{ __('Tampil | ' . $province->name) }}
+                                                                        wire:click="tampil('{{ $regency->id }}')">
+                                                                        {{ __('Tampil | ' . $regency->name) }}
                                                                     </x-dropdown-link>
                                                                 </li>
                                                                 <li>
                                                                     <x-dropdown-link
-                                                                        wire:click="edit('{{ $province->id }}')">
+                                                                        wire:click="edit('{{ $regency->id }}')">
                                                                         {{ __('Ubah') }}
                                                                     </x-dropdown-link>
                                                                 </li>
                                                                 <li>
                                                                     <x-dropdown-link
-                                                                        wire:click="$emit('confirm_remove_record', '{{ $province->id }}', '{{ $province->name }}')">
+                                                                        wire:click="$emit('confirm_remove_record', '{{ $regency->id }}', '{{ $regency->name }}')">
                                                                         {{ __('Hapus') }}
                                                                     </x-dropdown-link>
                                                                 </li>
@@ -237,19 +223,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- End Dropdown Action Open menu -->
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -273,15 +246,15 @@
 
 
                                                                 <x-dropdown-link
-                                                                    wire:click="tampil({{ $province->id }})">
-                                                                    {{ __('Tampil | ' . $province->name) }}
+                                                                    wire:click="tampil({{ $regency->id }})">
+                                                                    {{ __('Tampil | ' . $regency->name) }}
                                                                 </x-dropdown-link>
                                                                 <x-dropdown-link
-                                                                    wire:click="edit({{ $province->id }})">
+                                                                    wire:click="edit({{ $regency->id }})">
                                                                     {{ __('Ubah') }}
                                                                 </x-dropdown-link>
                                                                 <x-dropdown-link
-                                                                    wire:click="$emit('confirm_remove_record', {{ $province->id }}, '{{ $province->name }}')">
+                                                                    wire:click="$emit('confirm_remove_record', {{ $regency->id }}, '{{ $regency->name }}')">
                                                                     {{ __('Hapus') }}
                                                                 </x-dropdown-link>
 
@@ -294,13 +267,9 @@
 
 
 
-
-
-
                                                 </td>
                                             </tr>
                                         @endforeach
-
 
 
 
@@ -309,18 +278,16 @@
 
 
 
-
-
-
-
-
                                 {{-- no data found start --}}
-                                @if ($provinces->count() == 0)
+                                @if ($regencys->count() == 0)
                                     <div class="w-full p-4 text-sm text-center text-gray-500 dark:text-gray-400">
                                         {{ 'Data ' . $myProgram . ' Tidak ditemukan' }}
                                     </div>
                                 @endif
                                 {{-- no data found end --}}
+
+
+
                             </div>
                         </div>
                     </div>
@@ -328,18 +295,12 @@
 
 
 
-
                 <!-- Pagination start -->
                 <div class="flex items-center justify-end pt-3 sm:pt-6">
-                    {{-- {{ $provinces->links() }} --}}
-                    {{ $provinces->links('vendor.livewire.tailwind') }}
+                    {{-- {{ $regencys->links() }} --}}
+                    {{ $regencys->links('vendor.livewire.tailwind') }}
                 </div>
                 <!-- Pagination end -->
-
-
-
-
-
 
 
 
@@ -374,7 +335,7 @@
 
 
 
-    {{-- push start --}}
+    {{-- push start ///////////////////////////////// --}}
     @push('scripts')
         {{-- script start --}}
         <script src="{{ url('assets/js/jquery.min.js') }}"></script>
@@ -416,7 +377,7 @@
                 let cfn = confirm('Apakah anda ingin menghapus data ini ' + name + '?');
 
                 if (cfn) {
-                    window.livewire.emit('confirm_remove_record_province', key, name);
+                    window.livewire.emit('confirm_remove_record_regency', key, name);
                 }
             });
 
@@ -470,24 +431,6 @@
                 const dropdown = new Dropdown($targetEl, $triggerEl, options);
 
                 dropdown.show();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             });
         </script>
