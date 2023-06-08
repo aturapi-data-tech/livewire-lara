@@ -191,10 +191,16 @@ class MasterLevelDua extends Component
     // insert record start////////////////
     public function store()
     {
+
+        $customErrorMessages = [
+            'name.required' => 'Nama tidak boleh kosong',
+            'province_id.required' => 'Kode tidak boleh kosong'
+        ];
+
         $this->validate([
             'name' => 'required',
             'province_id' => 'required|exists:provinces,id'
-        ]);
+        ], $customErrorMessages);
 
         Regency::updateOrCreate(['id' => $this->regency_id], [
             'name' => $this->name,
